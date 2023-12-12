@@ -1,0 +1,15 @@
+.vscode
+.git
+**/__pycache__/
+.idea
+.pytest_cache
+.coverage
+htmlcov
+.tox
+*.egg-info
+
+**/fixtures/*
+db.sqlite3
+
+.private
+.venv/
