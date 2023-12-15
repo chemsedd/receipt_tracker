@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    /* Style the DL as 2 columns */
+    dl {
+        display: grid;
+        grid-template-columns: auto auto;
+        width: 40%;
+    }
+
+    dt, dd {
+        padding: 8px;
+    }
+
+    dt {
+        font-weight: bold;
+        grid-column: span 1;
+    }
+
+    dd {
+        grid-column: span 1;
+    }
+{% endblock %}
+
+{% block content %}
+<h1>Receipt {{ receipt.id }}</h1>
+
+<dl>
+    <dt>ID:</dt>
+    <dd>{{receipt.id}}</dd>
+
+    <dt>Store Name:</dt>
+    <dd>{{receipt.store_name}}</dd>
+
+    <dt>Date of Purchase:</dt>
+    <dd>{{receipt.date_of_purchase}}</dd>
+
+    <dt>Items:</dt>
+    <dd>{{receipt.item_list}}</dd>
+
+    <dt>Total Amount:</dt>
+    <dd>{{receipt.total_amount}}</dd>
+</dl>
+
+<!-- Update this receipt -->
+<a href="{{ receipt.get_update_url }}"><button>Update</button></a>
+
+<!-- Delete this receipt -->
+<a href="{{ receipt.get_delete_url }}"><button>Delete</button></a>
+
+{% endblock content %}

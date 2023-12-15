@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- 
+    This can be used for both situations:
+        - Create a new receipt
+        - Update an existing receipt
+ -->
+{% if receipt %}
+    <h1>Update Receipt {{ receipt.id }}</h1>
+{% else %}
+    <h1>Create a new receipt </h1>
+{% endif %}
+
+    <form action="" method="post" style="text-align: left;">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock content %}

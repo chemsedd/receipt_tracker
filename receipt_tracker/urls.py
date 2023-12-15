@@ -17,6 +17,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from core import views
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # list all receipts
+    path("receipts/", views.ReceiptListView.as_view(), name="receipt-list"),
+    # create a receipt
+    path("receipts/create", views.ReceiptCreateView.as_view(), name="receipt-create"),
+    # get a receipt details
+    path("receipts/<int:pk>", views.ReceiptDetailView.as_view(), name="receipt-detail"),
+    # delete a receipt
+    path(
+        "receipts/<int:pk>/delete",
+        views.ReceiptDeleteView.as_view(),
+        name="receipt-delete",
+    ),
+    # update a receipt
+    path(
+        "receipts/<int:pk>/update",
+        views.ReceiptUpdateView.as_view(),
+        name="receipt-update",
+    ),
 ]
