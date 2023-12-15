@@ -11,8 +11,10 @@
     <style>
         nav {
             display: flex;
-            gap: 10px;
-            padding: 4px;
+            justify-content: between;
+            gap: 20px;
+            padding: 10px 40px;
+            background: #eeeeee;
         }
 
         main {
@@ -22,8 +24,18 @@
     </style>
 
     <nav>
-        <a href="{% url 'receipt-list' %}">List</a>
-        <a href="{% url 'receipt-create' %}">Create</a>
+        {% if user.is_authenticated %}
+            <div style="flex-grow: 1">Welcome <strong>{{ user.username }}</strong></div>
+            <a href="{% url 'receipt-list' %}">List</a>
+            <a href="{% url 'receipt-create' %}">Create</a>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'signup' %}">Sign up</a>
+        {% endif %}
     </nav>
 
     <!-- Content section -->

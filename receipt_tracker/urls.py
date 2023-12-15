@@ -15,12 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
 from core import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # user login
+    path("login/", LoginView.as_view(), name="login"),
+    # user logout
+    path("logout/", LogoutView.as_view(), name="logout"),
+    # user registration
+    path("signup/", views.SignupView.as_view(), name="signup"),
     # list all receipts
     path("receipts/", views.ReceiptListView.as_view(), name="receipt-list"),
     # create a receipt
